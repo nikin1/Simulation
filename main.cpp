@@ -1,5 +1,4 @@
-#include "Object.h"
-
+#include "main.h"
 
 int random_num() {
 
@@ -12,11 +11,14 @@ int random_num() {
     return number;
 }
 
+
 int main() {
 
     Object Object;
 
     int cnt1 = 10;
+
+    UserEquipment User1;
 
     
     srand(time(NULL));
@@ -30,11 +32,12 @@ int main() {
             step_y = random_num();
         }
 
-        Object.move(step_x, step_y);        
-        // cout << "x: " << step_x << "\n" << "y: " << step_y << endl;
+        User1.move(step_x, step_y);
+        User1.Convert_to_geo();
     }
 
-    vector <Coordinates> path = Object.get_path();
+    vector <Coordinates> path = User1.get_path();
+
 
     cout << "PATH: " << endl;
     for (int i = 0; i < cnt1; i++) {
@@ -43,12 +46,21 @@ int main() {
         int x = temp.get_x();
         int y = temp.get_y();
 
+
+        double Lat = temp.get_Lat();
+        double Lon = temp.get_Lon();
+
+
         cout << "(" << x << ", " << y << "), ";
+        cout << "(" << Lat << ", " << Lon << ")\n";
+
 
     }
     cout << "\n";
 
-    cout << "Length path: " << Object.path_length() << endl;
+    cout << "Length path: " << User1.path_length() << endl;
 
     return 0;
 }
+
+
